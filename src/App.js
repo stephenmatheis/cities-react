@@ -1,25 +1,58 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import NavBar from './components/NavBar/NavBar';
+import Time from './components/Time/Time';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [ selectedCity, setSelectedCity ] = useState(null);
+    const [ hours, setHours ] = useState('00');
+    const [ minutes, setMinutes ] = useState('00');
+    const [ seconds, setSeconds ] = useState('00');
+    const [ timezone, setTimezone ] = useState('PLACEHOLDER');
+
+    useEffect(() => {
+        if (!selectedCity) {
+            return;
+        }
+
+        setTime();
+
+        setInterval(() => {
+            setTime();
+        }, 1000);
+    }, [ selectedCity ])
+
+    function setTime() {
+        const { label, area, api } = selectedCity;
+        const date = new Date().toLocaleTimeString('default', { timeZone: `${area}/${api || label.replaceAll(' ', '_')}`, hour12: false, timeZoneName: 'long' });
+        const [ time, ...timeZone ] = date.split(' ');
+        const [ hh, mm, ss ] = time.split(':');
+        const timeZoneName = timeZone.join(' ');
+
+        setHours(hh);
+        setMinutes(mm);
+        setSeconds(ss);
+        setTimezone(timeZoneName);
+    }
+
+    return (
+        <div className="App">
+            <header>
+                <NavBar
+                    selectedCity={selectedCity}
+                    setSelectedCity={setSelectedCity} 
+                />
+            </header>
+            <main>
+                <Time 
+                    hours={hours}
+                    minutes={minutes}
+                    seconds={seconds}
+                    tiemezone={timezone}
+                />
+            </main>
+        </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,40 @@
+/* Time */
+#time {
+    display: flex;
+    font-size: 20vw;
+    font-weight: 100;
+}
+
+.unit {
+    display: none;
+}
+
+#hh, #mm, #ss {
+    width: 23vw;
+}
+
+#time-zone {
+    margin-top: 1.25em;
+    text-align: center;
+    font-size: 1.25em;
+    height: 2.5em;
+}
+
+/* Responsize styles */
+@media screen and (max-width: 700px) {
+    #time {
+        flex-direction: column;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .time-block {
+        display: flex;
+    }
+
+    .unit {
+        display: block;
+    }
+}
