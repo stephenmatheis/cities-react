@@ -11,7 +11,8 @@ function NavBar({ selectedCity, setSelectedCity }) {
     useEffect(() => {
         (async function fetchData() {
             // Fetch and await JSON document
-            const requestData = await fetch('https://peppy-salmiakki-a559f4.netlify.app/.netlify/functions/cities');
+            // const requestData = await fetch('https://peppy-salmiakki-a559f4.netlify.app/.netlify/functions/cities');
+            const requestData = await fetch('http://localhost:2035/cities');
 
             // Await return of object parsed from JSON document
             const data = await requestData.json();

@@ -9,17 +9,22 @@ function App() {
     const [ minutes, setMinutes ] = useState('00');
     const [ seconds, setSeconds ] = useState('00');
     const [ timezone, setTimezone ] = useState('PLACEHOLDER');
+    const [ updateTime, setUpdateTime ] = useState(null);
 
     useEffect(() => {
         if (!selectedCity) {
             return;
         }
 
+        clearInterval(updateTime);
+
         setTime();
 
-        setInterval(() => {
-            setTime();
-        }, 1000);
+        setUpdateTime(
+            setInterval(() => {
+                setTime();
+            }, 1000)
+        )
     }, [ selectedCity ])
 
     function setTime() {
@@ -48,7 +53,7 @@ function App() {
                     hours={hours}
                     minutes={minutes}
                     seconds={seconds}
-                    tiemezone={timezone}
+                    timezone={timezone}
                 />
             </main>
         </div>

@@ -23,7 +23,7 @@ function Time({ hours, minutes, seconds, timezone }) {
             </div>
             <div
                 id="time-zone"
-                className={classNames({ opaque: timezone !== 'PLACEHOLDER'})}
+                className={classNames({ opaque: timezone === 'PLACEHOLDER'})}
             >
                 {timezone}
             </div>

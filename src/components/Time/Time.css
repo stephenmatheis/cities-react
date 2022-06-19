@@ -18,6 +18,11 @@
     text-align: center;
     font-size: 1.25em;
     height: 2.5em;
+    transition: opacity 100ms ease-in-out;
+}
+
+.opaque {
+    opacity: 0;
 }
 
 /* Responsize styles */
