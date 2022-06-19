@@ -44,7 +44,6 @@ function App() {
         <div className="App">
             <header>
                 <NavBar
-                    selectedCity={selectedCity}
                     setSelectedCity={setSelectedCity} 
                 />
             </header>
