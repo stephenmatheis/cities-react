@@ -11,6 +11,7 @@
 
 #hh, #mm, #ss {
     width: 23vw;
+    margin-right: 10px;
 }
 
 #time-zone {
@@ -27,6 +28,10 @@
 
 /* Responsize styles */
 @media screen and (max-width: 700px) {
+    #time-container {
+        width: 159.72px;
+    }
+
     #time {
         flex-direction: column;
     }
@@ -37,6 +42,7 @@
 
     .time-block {
         display: flex;
+        width: 100%;
     }
 
     .unit {

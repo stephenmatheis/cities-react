@@ -4,7 +4,7 @@ import './Time.css';
 
 function Time({ hours, minutes, seconds, timezone }) {
     return (
-        <div>
+        <div id='time-container'>
             <div id="time">
                 <div className='time-block'>
                     <div id="hh">{hours}</div>

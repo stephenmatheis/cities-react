@@ -6,27 +6,54 @@ function NavBar({ setSelectedCity }) {
     const [ cities, setCities ] = useState([]);
     const [ selectedSection, setSelectedSection ] = useState('');
     const [ selectedBtn, setSelectedBtn ] = useState(null);
+    const [ addTransition, setAddTransition ] = useState(null);
     const slider = useRef();
 
     useEffect(() => {
-        (async function fetchData() {
-            // Fetch and await JSON document
-            const site = 'https://cities-react.netlify.app/';
-            const api = window.location.href === site ? `${site}.netlify/functions/cities` :  'http://localhost:2035/cities';
-            const requestData = await fetch(api);
-
-            // Await return of object parsed from JSON document
-            const data = await requestData.json();
-
-            // Set cities array
-            setCities(data);
-
-            // Now that all data has been fetched, show app
-            document.body.style.display = 'flex';
-        })();
+        window.addEventListener('resize', onResize);
+        fetchData();
     }, [ ]);
 
     useEffect(() => {
+        setSliderSizeAndPosition();
+    }, [ selectedBtn, onResize ]);
+
+    async function fetchData() {
+        // Fetch and await JSON document
+        const site = 'https://cities-react.netlify.app/';
+        const api = window.location.href === site ? `${site}.netlify/functions/cities` :  'http://localhost:2035/cities';
+        const requestData = await fetch(api);
+
+        // Await return of object parsed from JSON document
+        const data = await requestData.json();
+
+        // Set cities array
+        setCities(data);
+
+        // Now that all data has been fetched, show app
+        document.body.style.display = 'flex';
+    }
+
+    function onResize() {
+        // Clear addTransition so it only fires once
+        // (i.e. after the user has finished resizing the window)
+        clearTimeout(addTransition);
+
+        // Remove transition while resizing
+        slider.current.classList.remove('transition');
+
+        // Set slider
+        setSliderSizeAndPosition();
+
+        // Add transition back
+        setAddTransition(
+            setTimeout(() => {
+                slider.current.classList.add('transition');
+            }, 200)
+        );
+    }
+
+    function setSliderSizeAndPosition() {
         if (!selectedBtn) {
             return;
         }
@@ -55,7 +82,7 @@ function NavBar({ setSelectedCity }) {
             slider.current.style.left = '0px'
             slider.current.style.width = `1px`;
         }
-    }, [ selectedBtn ]);
+    }
 
     return (
         <div className='nav-container'>
