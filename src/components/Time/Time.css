@@ -1,8 +1,10 @@
 /* Time */
 #time {
     display: flex;
+    align-items: baseline;
     font-size: 20vw;
-    font-weight: 100;
+    font-weight: 600;
+    color: var(--selected);
 }
 
 .unit {
@@ -10,30 +12,54 @@
 }
 
 #hh, #mm, #ss {
-    width: 23vw;
+    width: 25vw;
     margin-right: 10px;
 }
 
+#ss {
+    color: var(--primary);
+}
+
 #time-zone {
-    margin-top: 1.25em;
     text-align: center;
     font-size: 1.25em;
-    height: 2.5em;
     transition: opacity 100ms ease-in-out;
+    color: var(--default);
 }
 
 .opaque {
     opacity: 0;
 }
 
+.time-block.narrow #hh {
+    width: 12.5vw;
+    text-align: right;
+}
+
+#hour-period {
+    font-size: 5vw;
+}
+
+@media screen and (min-width: 700px) {
+    #time-zone {
+        margin-bottom: 2em;
+    }
+}
+
 /* Responsize styles */
 @media screen and (max-width: 700px) {
     #time-container {
-        width: 159.72px;
+        width: 240px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 2;
     }
 
     #time {
         flex-direction: column;
+        align-items: center;
     }
 
     .divider {
@@ -47,5 +73,16 @@
 
     .unit {
         display: block;
+    }
+
+    #time-zone {
+        margin-top: 1em;
+    }
+}
+
+/* Responsize styles */
+@media screen and (max-height: 400px) {
+    #time-zone {
+        margin-bottom: 1em;
     }
 }

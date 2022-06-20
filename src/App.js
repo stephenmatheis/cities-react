@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import Time from './components/Time/Time';
+import ToolBar from './components/ToolBar/ToolBar';
 
 function App() {
     const [ selectedCity, setSelectedCity ] = useState(null);
+    const [ hourType, setHourType ] = useState(24);
+    const [ hourPeriod, setHourPeriod ] = useState('AM');
+    const [ clockType, setClockType ] = useState('Digital');
     const [ hours, setHours ] = useState('00');
     const [ minutes, setMinutes ] = useState('00');
     const [ seconds, setSeconds ] = useState('00');
@@ -25,7 +29,12 @@ function App() {
                 setTime();
             }, 1000)
         )
-    }, [ selectedCity ])
+    }, [ selectedCity ]);
+
+    useEffect(() => {
+        const hoursNum = parseInt(hours);
+        setHours(hourType === 24 ? (hoursNum < 10 ? `0${hoursNum}` : hours) : hoursNum);
+    }, [ hourType ]);
 
     function setTime() {
         const { label, area, api } = selectedCity;
@@ -34,7 +43,17 @@ function App() {
         const [ hh, mm, ss ] = time.split(':');
         const timeZoneName = timeZone.join(' ');
 
-        setHours(hh);
+        if (hourType === 24) {
+            setHours(hh == '24' ? '00' : hh);
+        } else {
+            setHours(hh);
+            setHourPeriod(
+                new Date()
+                .toLocaleTimeString('default', { timeZone: `${area}/${api || label.replaceAll(' ', '_')}` })
+                .split(' ')[1]
+            );
+        }
+
         setMinutes(mm);
         setSeconds(ss);
         setTimezone(timeZoneName);
@@ -44,7 +63,7 @@ function App() {
         <div className="App">
             <header>
                 <NavBar
-                    setSelectedCity={setSelectedCity} 
+                    setSelectedCity={setSelectedCity}
                 />
             </header>
             <main>
@@ -53,7 +72,13 @@ function App() {
                     minutes={minutes}
                     seconds={seconds}
                     timezone={timezone}
+                    hourType={hourType}
+                    hourPeriod={hourPeriod}
                 />
+                <ToolBar
+                    setHourType={setHourType}
+                    setClockType={setClockType}
+                ></ToolBar>
             </main>
         </div>
     );
