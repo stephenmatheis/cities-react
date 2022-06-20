@@ -91,37 +91,6 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
                 <button
                     type="button"
                     onClick={() => {
-                        selectedHour.current.style.left = left;
-                        setHourType(24);
-
-                        // FIXME: Under development
-                        // document.querySelector('#time-container').style.transform = `translateX(${window.innerWidth}px)`;
-                    }}
-                >
-                    24 Hour
-                </button>
-                <button
-                    type="button"
-                    onClick={() => {
-                        selectedHour.current.style.left = right;
-                        setHourType(12);
-
-                        // FIXME: Under development
-                        // document.querySelector('#time-container').style.transform = `translateX(${window.innerWidth}px)`;
-                    }}
-                >
-                    12 Hour
-                </button>
-                <div 
-                    className='selected transition'
-                    ref={selectedHour}
-                    style={{ left: hourType === 24 ? left : right }}
-                ></div>
-            </div>
-            <div className="button-container">
-                <button
-                    type="button"
-                    onClick={() => {
                         selectedClock.current.style.left = left;
                         setClockType('Digital');
                     }}
@@ -141,6 +110,31 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
                     className='selected transition'
                     ref={selectedClock}
                     style={{ left: clockType === 'Digital' ? left : right }}
+                ></div>
+            </div>
+            <div className="button-container">
+                <button
+                    type="button"
+                    onClick={() => {
+                        selectedHour.current.style.left = left;
+                        setHourType(24);
+                    }}
+                >
+                    24 Hour
+                </button>
+                <button
+                    type="button"
+                    onClick={() => {
+                        selectedHour.current.style.left = right;
+                        setHourType(12);
+                    }}
+                >
+                    12 Hour
+                </button>
+                <div 
+                    className='selected transition'
+                    ref={selectedHour}
+                    style={{ left: hourType === 24 ? left : right }}
                 ></div>
             </div>
         </div>

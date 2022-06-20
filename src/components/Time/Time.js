@@ -110,6 +110,20 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
                         <span className="minute" ref={minuteHand}></span>
                         <span className="second" ref={secondHand}></span>
                         <span className="axis"></span>
+                        <div className='hours-labels'>
+                            <div className='hour-label twelve'>
+                                <div>{hourType === 24 ? '24' : '12'}</div>
+                            </div>
+                            <div className='hour-label three'>
+                                <div>{hourType === 24 ? '15' : '3'}</div>
+                            </div>
+                            <div className='hour-label six'>
+                                <div>{hourType === 24 ? '18' : '6'}</div>
+                            </div>
+                            <div className='hour-label nine'>
+                                <div>{hourType === 24 ? '21' : '9'}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             }

@@ -12,8 +12,8 @@ function App() {
     const [ selectedCity, setSelectedCity ] = useState(null);
     const [ hourType, setHourType ] = useState(24);
     const [ hourPeriod, setHourPeriod ] = useState('AM');
-    const [ clockType, setClockType ] = useState('Digital');
-    const [ hours, setHours ] = useState('00');
+    const [ clockType, setClockType ] = useState('Analog');
+    const [ hours, setHours ] = useState('9');
     const [ minutes, setMinutes ] = useState('00');
     const [ seconds, setSeconds ] = useState('00');
     const [ timezone, setTimezone ] = useState('PLACEHOLDER');
