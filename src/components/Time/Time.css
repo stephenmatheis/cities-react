@@ -253,13 +253,13 @@
 
     #time,
     .clock-container {
-        min-height: 315px;
+        min-height: 348px;
     }
 
     #time {
-        height: 315px;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
 
     .divider {
