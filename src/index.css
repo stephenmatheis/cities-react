@@ -16,10 +16,10 @@ html {
 body {
     display: none;
     flex-direction: column;
-    height: 100dvh;
     height: 100vh;
+    height: -webkit-fill-available;
     width: 100vw;
-    min-width: 400px;
+    min-width: 375px;
     margin: 0px;
     padding: 30px;
 }
@@ -34,5 +34,13 @@ body {
     body {
         flex-direction: row;
         padding-right: 0px;
+    }
+}
+
+/* Mobile Safari Only */
+/* (Reference)[https://www.bram.us/2021/07/08/the-large-small-and-dynamic-viewports/] */
+@supports (height: 100dvh) {
+    body {
+        height: 100dvh;
     }
 }
