@@ -41,7 +41,7 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
 
         hourHand.current.style.transform = `rotate(${hour}deg)`;
         minuteHand.current.style.transform = `rotate(${minute}deg)`;
-        second == 0
+        second === 0
             ? secondHand.current.classList.add("hide-transition")
             : secondHand.current.classList.remove("hide-transition");
         secondHand.current.style.transform = `rotate(${second}deg)`;
@@ -63,6 +63,7 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
 
         block.current.style.animation = 'none';
         const reflow = block.current.offsetHeight;
+        console.log(reflow);
         block.current.style.animation = null;
     }
 

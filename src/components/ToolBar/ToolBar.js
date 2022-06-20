@@ -66,7 +66,7 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
             selectedHour.current.style.left = hourType === 24 ? left : right;
             selectedHour.current.style.top = top
         } else {
-            selectedHour.current.style.top = hourType == 24 ? top : bottom;
+            selectedHour.current.style.top = hourType === 24 ? top : bottom;
             selectedHour.current.style.left = left;
         }
     }
@@ -80,7 +80,7 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
             selectedClock.current.style.left = clockType === 'Digital' ? left : right;
             selectedClock.current.style.top = top
         } else {
-            selectedClock.current.style.top = clockType == 'Digital' ? top : bottom;
+            selectedClock.current.style.top = clockType === 'Digital' ? top : bottom;
             selectedClock.current.style.left = left;
         }
     }
