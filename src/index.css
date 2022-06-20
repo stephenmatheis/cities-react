@@ -31,7 +31,6 @@ body {
     display: flex;
 }
 
-/* Responsize styles */
 @media screen and (max-width: 700px) {
     body {
         flex-direction: row;
@@ -39,7 +38,7 @@ body {
     }
 }
 
-/* Mobile Safari Only */
+/* Mobile Safari Support */
 /* (Reference)[https://www.bram.us/2021/07/08/the-large-small-and-dynamic-viewports/] */
 @supports (height: 100dvh) {
     body {

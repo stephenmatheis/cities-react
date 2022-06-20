@@ -12,7 +12,6 @@ main {
     flex: 2;
 }
 
-/* Responsize styles */
 @media screen and (max-width: 700px) {
     .App {
         display: flex;

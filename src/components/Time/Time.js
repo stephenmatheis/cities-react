@@ -2,12 +2,18 @@ import classNames from 'classnames';
 import React, { useEffect, useRef } from 'react';
 import './Time.css';
 
+/**
+ * 
+ * @param {Object} props 
+ * @returns 
+ */
 function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockType }) {
     const hourHand = useRef(null);
     const minuteHand = useRef(null);
     const secondHand = useRef(null);
 
     useEffect(() => {
+        // Modified from (CodePen)[https://codepen.io/rizz-wan/pen/LYQrGXM]
         const hour = hours * 30;
         const minute = minutes * 6;
         const second = seconds * 6;
@@ -68,6 +74,7 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
             }
             {
                 clockType === 'Analog' &&
+                // Modified from (CodePen)[https://codepen.io/rizz-wan/pen/LYQrGXM]
                 <div className="clock-container">
                     <div className="clock">
                         <span className="hour" ref={hourHand}></span>

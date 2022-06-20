@@ -4,11 +4,15 @@ import NavBar from './components/NavBar/NavBar';
 import Time from './components/Time/Time';
 import ToolBar from './components/ToolBar/ToolBar';
 
+/**
+ * 
+ * @returns 
+ */
 function App() {
     const [ selectedCity, setSelectedCity ] = useState(null);
     const [ hourType, setHourType ] = useState(24);
     const [ hourPeriod, setHourPeriod ] = useState('AM');
-    const [ clockType, setClockType ] = useState('Digital');
+    const [ clockType, setClockType ] = useState('Analog');
     const [ hours, setHours ] = useState('00');
     const [ minutes, setMinutes ] = useState('00');
     const [ seconds, setSeconds ] = useState('00');
@@ -77,6 +81,8 @@ function App() {
                     clockType={clockType}
                 />
                 <ToolBar
+                    hourType={hourType}
+                    clockType={clockType}
                     setHourType={setHourType}
                     setClockType={setClockType}
                 ></ToolBar>

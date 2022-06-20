@@ -44,7 +44,6 @@
     transition: left 300ms ease-in-out;
 }
 
-/* Responsize styles */
 @media screen and (min-width: 700px) {
     #toolbar .button-container:not(:last-child) {
         margin-right: 10vw;
@@ -53,8 +52,8 @@
 
 @media screen and (max-width: 700px) {
     #toolbar {
-        flex: 1;
         flex-direction: column;
+        justify-content: start;
     }
 
     #toolbar .button-container {
@@ -62,6 +61,6 @@
     }
 
     #toolbar .button-container:not(:last-child) {
-        margin-bottom: 10vw;
+        margin-bottom: 5vw;
     }
 }

@@ -1,9 +1,16 @@
 import React, { useRef } from 'react';
 import './ToolBar.css';
 
-function ToolBar({ setHourType, setClockType }) {
+/**
+ * 
+ * @param {Object} props 
+ * @returns 
+ */
+function ToolBar({ hourType, clockType, setHourType, setClockType }) {
     const selectedHour = useRef(null);
     const selectedClock = useRef(null);
+    const left = '10px';
+    const right = '190px';
 
     return (
         <div id="toolbar">
@@ -11,7 +18,7 @@ function ToolBar({ setHourType, setClockType }) {
                 <button
                     type="button"
                     onClick={() => {
-                        selectedHour.current.style.left = '10px';
+                        selectedHour.current.style.left = left;
                         setHourType(24);
 
                         // FIXME: Under development
@@ -23,7 +30,7 @@ function ToolBar({ setHourType, setClockType }) {
                 <button
                     type="button"
                     onClick={() => {
-                        selectedHour.current.style.left = '190px';
+                        selectedHour.current.style.left = right;
                         setHourType(12);
 
                         // FIXME: Under development
@@ -35,13 +42,14 @@ function ToolBar({ setHourType, setClockType }) {
                 <div 
                     className='selected'
                     ref={selectedHour}
+                    style={{ left: hourType === 24 ? left : right }}
                 ></div>
             </div>
             <div className="button-container">
                 <button
                     type="button"
                     onClick={() => {
-                        selectedClock.current.style.left = '10px';
+                        selectedClock.current.style.left = left;
                         setClockType('Digital');
                     }}
                 >
@@ -50,13 +58,14 @@ function ToolBar({ setHourType, setClockType }) {
                 <button
                     type="button"
                     onClick={() => {
-                        selectedClock.current.style.left = '190px';
+                        selectedClock.current.style.left = right;
                         setClockType('Analog');
                     }}
                 >
                     Analog
                 </button>
                 <div
+                    style={{ left: clockType === 'Digital' ? left : right }}
                     className='selected'
                     ref={selectedClock}
                 ></div>

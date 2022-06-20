@@ -2,6 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import './NavBar.css';
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 function NavBar({ setSelectedCity }) {
     const [ cities, setCities ] = useState([]);
     const [ selectedSection, setSelectedSection ] = useState('');

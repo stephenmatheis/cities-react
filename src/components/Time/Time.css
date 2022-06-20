@@ -1,9 +1,9 @@
-/* Time */
 #time-container {
     transform: translateX(0px);
     transition: transform 450ms ease-in-out;
 }
 
+/* Digital */
 #time {
     display: flex;
     align-items: baseline;
@@ -18,22 +18,12 @@
 
 #hh, #mm, #ss {
     width: 25vw;
+    height: 25vw;
     margin-right: 10px;
 }
 
 #ss {
     color: var(--primary);
-}
-
-#time-zone {
-    text-align: center;
-    font-size: 1.25em;
-    transition: opacity 100ms ease-in-out;
-    color: var(--default);
-}
-
-.opaque {
-    opacity: 0;
 }
 
 .time-block.narrow #hh {
@@ -46,12 +36,13 @@
 }
 
 /* Analog */
+/* Modified from (CodePen)[https://codepen.io/rizz-wan/pen/LYQrGXM] */
 .clock {
     background: var(--secondary);
     border-radius: 100%;
-    height: 350px;
+    height: 25vw;
     position: relative;
-    width: 350px;
+    width: 25vw;
 }
   
 .minute,
@@ -61,20 +52,20 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     bottom: 0;
-    height: 80px;
+    height: 32.5%;
     left: 0;
     margin: auto;
     position: absolute;
     right: 0;
-    top: -24%;
+    top: -33%; /* 24% */
     transform-origin: bottom center;
     transition: transform 0.3s cubic-bezier(0.4, 2.08, 0.55, 0.44);
     width: 4px;
 }
 
 .minute {
-    height: 125px;
-    top: -37%;
+    height: 42.5%;
+    top: -42%; /* 47% */
 }
   
 .second {
@@ -83,12 +74,12 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     bottom: 0px;
-    height: 180px;
+    height: 50%;
     left: 0px;
     margin: auto;
     position: absolute;
     right: 0px;
-    top: -40.8%;
+    top: -39.2%; /* -40.8% */
     transform-origin: 50% 89%;
     transition: transform 0.2s cubic-bezier(0.4, 2.08, 0.55, 0.44);
     width: 2px;
@@ -114,13 +105,24 @@
     width: 8px;
 }
 
+/* Time zone */
+#time-zone {
+    text-align: center;
+    font-size: 1.25em;
+    transition: opacity 100ms ease-in-out;
+    color: var(--default);
+}
+
+.opaque {
+    opacity: 0;
+}
+
 @media screen and (min-width: 700px) {
     #time-zone {
         margin-bottom: 2em;
     }
 }
 
-/* Responsize styles */
 @media screen and (max-width: 700px) {
     #time-container {
         width: 240px;
@@ -128,7 +130,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex: 2;
     }
 
     #time {
@@ -150,11 +151,17 @@
     }
 
     #time-zone {
-        margin-top: 1em;
+        height: 50px;
+        margin-top: 2.5vh;
+        margin-bottom: 5vh;
+    }
+
+    .clock {
+        height: 45vw;
+        width: 45vw;
     }
 }
 
-/* Responsize styles */
 @media screen and (max-height: 400px) {
     #time-zone {
         margin-bottom: 1em;
