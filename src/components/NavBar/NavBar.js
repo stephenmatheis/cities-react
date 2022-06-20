@@ -7,21 +7,30 @@ import './NavBar.css';
  * @param {*} param0 
  * @returns 
  */
-function NavBar({ setSelectedCity }) {
+function NavBar({ selectedCity, setSelectedCity }) {
     const [ cities, setCities ] = useState([]);
     const [ selectedSection, setSelectedSection ] = useState('');
     const [ selectedBtn, setSelectedBtn ] = useState(null);
     const [ addTransition, setAddTransition ] = useState(null);
+    const nav = useRef();
     const slider = useRef();
 
     useEffect(() => {
-        window.addEventListener('resize', onResizeNavBar);
         fetchData();
+        window.addEventListener('resize', onResize);
     }, [ ]);
 
     useEffect(() => {
+        if (selectedCity && !selectedBtn) {
+            setSelectedBtn(nav.current.querySelector(`.city[data-section="${selectedCity.section}"]`));
+        }
+
+        // FIXME: 
+        // Adding onResize to dependency array fires setSliderSizeAndPosition every time this effect is run,
+        // which is every second.
+        console.log('fired');
         setSliderSizeAndPosition();
-    }, [ selectedBtn, onResizeNavBar ]);
+    }, [ selectedBtn, onResize ]);
 
     async function fetchData() {
         // Fetch and await JSON document
@@ -39,7 +48,7 @@ function NavBar({ setSelectedCity }) {
         document.body.style.display = 'flex';
     }
 
-    function onResizeNavBar() {
+    function onResize() {
         // Clear addTransition so it only fires once
         // (i.e. after the user has finished resizing the window)
         clearTimeout(addTransition);
@@ -62,7 +71,7 @@ function NavBar({ setSelectedCity }) {
         if (!selectedBtn) {
             return;
         }
-        
+
         // Get position values of selected city
         const { width, height, top, left} = selectedBtn.getBoundingClientRect();
 
@@ -91,13 +100,13 @@ function NavBar({ setSelectedCity }) {
 
     return (
         <div className='nav-container'>
-            <nav>
+            <nav ref={nav}>
                 {
                     cities.map(({ section, label }) => {
                         return (
                             <div
                                 key={section}
-                                className={classNames('city', {selected: selectedSection === section })}
+                                className={classNames('city', {selected: selectedSection === section || selectedCity && selectedCity.section === section })}
                                 data-section={section}
                                 onClick={(event) => {
                                     setSelectedSection(event.target.dataset.section);

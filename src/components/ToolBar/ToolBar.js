@@ -30,11 +30,6 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
     }, [ clockType ]);
 
     function onResizeToolBar() {
-        console.clear();
-        console.log('toolbar resize');
-
-        console.log(hourType, clockType);
-
         clearTimeout(addhourTypeTransition);
         clearTimeout(addClockTypeTransition);
 
@@ -93,6 +88,7 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
                     onClick={() => {
                         selectedClock.current.style.left = left;
                         setClockType('Digital');
+                        localStorage.setItem('clock-type', 'Digital');
                     }}
                 >
                     Digital
@@ -102,6 +98,7 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
                     onClick={() => {
                         selectedClock.current.style.left = right;
                         setClockType('Analog');
+                        localStorage.setItem('clock-type', 'Analog');
                     }}
                 >
                     Analog

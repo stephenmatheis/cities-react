@@ -56,14 +56,21 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
         secondHand.current.style.boxShadow = `${secondOffsetSign}6px ${secondOffsetSign}6px 6px #b8b9be`;
     }, [ hours, minutes, seconds, clockType ]);
 
+    /**
+     * Trigger animation repaint.
+     * 
+     * (Reference)[https://css-tricks.com/restart-css-animation/#aa-update-another-javascript-method-to-restart-a-css-animation]
+     * 
+     * @param {HTMLElement} block - <div class='time-block'>
+     * @returns 
+     */
     function reflow(block) {
         if (!block.current) {
             return;
         }
 
         block.current.style.animation = 'none';
-        const reflow = block.current.offsetHeight;
-        console.log(reflow);
+        void block.current.offsetHeight;
         block.current.style.animation = null;
     }
 

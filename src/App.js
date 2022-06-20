@@ -9,11 +9,11 @@ import ToolBar from './components/ToolBar/ToolBar';
  * @returns 
  */
 function App() {
-    const [ selectedCity, setSelectedCity ] = useState(null);
-    const [ hourType, setHourType ] = useState(24);
+    const [ selectedCity, setSelectedCity ] = useState(JSON.parse(localStorage.getItem('city')) || null);
+    const [ hourType, setHourType ] = useState(parseInt(localStorage.getItem('hour-type')) || 24);
     const [ hourPeriod, setHourPeriod ] = useState('AM');
-    const [ clockType, setClockType ] = useState('Analog');
-    const [ hours, setHours ] = useState('9');
+    const [ clockType, setClockType ] = useState(localStorage.getItem('clock-type',) || 'Digital');
+    const [ hours, setHours ] = useState('00');
     const [ minutes, setMinutes ] = useState('00');
     const [ seconds, setSeconds ] = useState('00');
     const [ timezone, setTimezone ] = useState('PLACEHOLDER');
@@ -32,8 +32,15 @@ function App() {
             setInterval(() => {
                 setTime();
             }, 1000)
-        )
+        );
+
     }, [ selectedCity, hourType, hours, minutes, seconds ]);
+
+    useEffect(() => {
+        localStorage.setItem('hour-type', hourType.toString());
+        localStorage.setItem('clock-type', clockType);
+        localStorage.setItem('city', JSON.stringify(selectedCity));
+    }, [ hourType, clockType, selectedCity ])
 
     useEffect(() => {
         const hoursNum = parseInt(hours);
@@ -68,6 +75,7 @@ function App() {
         <div className="App">
             <header>
                 <NavBar
+                    selectedCity={selectedCity}
                     setSelectedCity={setSelectedCity}
                 />
             </header>
