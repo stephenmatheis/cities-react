@@ -60,10 +60,6 @@
 
 /* Analog */
 /* Modified from (CodePen)[https://codepen.io/rizz-wan/pen/LYQrGXM] */
-.clock-container {
-    margin-bottom: 2vw;
-}
-
 .clock-container.animate {
     animation: drop-in-analog 400ms ease-in-out forwards;
     opacity: 0;
@@ -239,16 +235,25 @@
     .time-block.narrow #hh {
         width: 12.5vw;
     }
+
+    .clock-container {
+        margin-bottom: 2vw;
+    }
 }
 
 @media screen and (max-width: 700px) {
     #time-container {
-        height: 403px;
+        min-height: 403px;
         width: 240px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    #time,
+    .clock-container {
+        min-height: 315px;
     }
 
     #time {
@@ -274,6 +279,11 @@
         height: 50px;
         margin-top: 1.5vh;
         margin-bottom: 3vh;
+    }
+
+    .clock-container {
+        display: flex;
+        align-items: center;
     }
 
     .clock,
