@@ -15,13 +15,13 @@ function NavBar({ setSelectedCity }) {
     const slider = useRef();
 
     useEffect(() => {
-        window.addEventListener('resize', onResize);
+        window.addEventListener('resize', onResizeNavBar);
         fetchData();
     }, [ ]);
 
     useEffect(() => {
         setSliderSizeAndPosition();
-    }, [ selectedBtn, onResize ]);
+    }, [ selectedBtn, onResizeNavBar ]);
 
     async function fetchData() {
         // Fetch and await JSON document
@@ -39,7 +39,7 @@ function NavBar({ setSelectedCity }) {
         document.body.style.display = 'flex';
     }
 
-    function onResize() {
+    function onResizeNavBar() {
         // Clear addTransition so it only fires once
         // (i.e. after the user has finished resizing the window)
         clearTimeout(addTransition);

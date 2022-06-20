@@ -17,8 +17,9 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
     const bottom = '85px';
 
     useEffect(() => {
-        window.addEventListener('resize', onResize);
-    }, [ ]);
+        window.removeEventListener('resize', onResizeToolBar);
+        window.addEventListener('resize', onResizeToolBar);
+    }, [ hourType, clockType ]);
 
     useEffect(() => {
         setHourTypePosition();
@@ -28,7 +29,12 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
         setClockTypePosition();
     }, [ clockType ]);
 
-    function onResize() {
+    function onResizeToolBar() {
+        console.clear();
+        console.log('toolbar resize');
+
+        console.log(hourType, clockType);
+
         clearTimeout(addhourTypeTransition);
         clearTimeout(addClockTypeTransition);
 
@@ -37,6 +43,18 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
 
         setHourTypePosition();
         setClockTypePosition();
+
+        setAddHourTypeTransition(
+            setTimeout(() => {
+                selectedHour.current.classList.add('transition');
+            }, 200)
+        );
+
+        setAddClockTypeTransition(
+            setTimeout(() => {
+                selectedClock.current.classList.add('transition');
+            }, 200)
+        );
     }
 
     function setHourTypePosition() {

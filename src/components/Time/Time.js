@@ -39,8 +39,6 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
             return;
         }
 
-        console.log(hour, minute, second);
-
         hourHand.current.style.transform = `rotate(${hour}deg)`;
         minuteHand.current.style.transform = `rotate(${minute}deg)`;
         second == 0
