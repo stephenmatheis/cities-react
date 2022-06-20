@@ -12,7 +12,7 @@ function App() {
     const [ selectedCity, setSelectedCity ] = useState(null);
     const [ hourType, setHourType ] = useState(24);
     const [ hourPeriod, setHourPeriod ] = useState('AM');
-    const [ clockType, setClockType ] = useState('Analog');
+    const [ clockType, setClockType ] = useState('Digital');
     const [ hours, setHours ] = useState('00');
     const [ minutes, setMinutes ] = useState('00');
     const [ seconds, setSeconds ] = useState('00');
@@ -33,10 +33,11 @@ function App() {
                 setTime();
             }, 1000)
         )
-    }, [ selectedCity, hourType ]);
+    }, [ selectedCity, hourType, hours, minutes, seconds ]);
 
     useEffect(() => {
         const hoursNum = parseInt(hours);
+
         setHours(hourType === 24 ? (hoursNum < 10 ? `0${hoursNum}` : hours) : hoursNum);
     }, [ hourType ]);
 
@@ -50,12 +51,12 @@ function App() {
         if (hourType === 24) {
             setHours(hh === '24' ? '00' : hh);
         } else {
-            setHours(parseInt(hh));
-            setHourPeriod(
-                new Date()
+            const [ time, period ] = new Date()
                 .toLocaleTimeString('default', { timeZone: `${area}/${api || label.replaceAll(' ', '_')}` })
-                .split(' ')[1]
-            );
+                .split(' ');
+
+            setHours(time.split(':')[0]);
+            setHourPeriod(period);
         }
 
         setMinutes(mm);
@@ -79,6 +80,7 @@ function App() {
                     hourType={hourType}
                     hourPeriod={hourPeriod}
                     clockType={clockType}
+                    selectedCity={selectedCity}
                 />
                 <ToolBar
                     hourType={hourType}

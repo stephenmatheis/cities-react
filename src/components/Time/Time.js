@@ -7,10 +7,27 @@ import './Time.css';
  * @param {Object} props 
  * @returns 
  */
-function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockType }) {
+function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockType, selectedCity }) {
+    // Digital
+    const hoursBlock = useRef(null);
+    const minutesBlock = useRef(null);
+    const secondsBlock = useRef(null);
+
+    // Analog
+    const clockContainer = useRef(null);
     const hourHand = useRef(null);
     const minuteHand = useRef(null);
     const secondHand = useRef(null);
+
+    // Shared
+    const timezoneNode = useRef(null);
+
+    useEffect(() => {
+        reflow(hoursBlock);
+        reflow(minutesBlock);
+        reflow(secondsBlock);
+        reflow(timezoneNode);
+    }, [ selectedCity ]);
 
     useEffect(() => {
         // Modified from (CodePen)[https://codepen.io/rizz-wan/pen/LYQrGXM]
@@ -39,9 +56,17 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
         hourHand.current.style.boxShadow = `${hourOffsetSign}6px ${hourOffsetSign}6px 6px #b8b9be`;
         minuteHand.current.style.boxShadow = `${minuteOffsetSign}6px ${minuteOffsetSign}6px 6px #b8b9be`;
         secondHand.current.style.boxShadow = `${secondOffsetSign}6px ${secondOffsetSign}6px 6px #b8b9be`;
-
-
     }, [ hours, minutes, seconds, clockType ]);
+
+    function reflow(block) {
+        if (!block.current) {
+            return;
+        }
+
+        block.current.style.animation = 'none';
+        const reflow = block.current.offsetHeight;
+        block.current.style.animation = null;
+    }
 
     return (
         <div id='time-container'>
@@ -49,18 +74,19 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
                 clockType === 'Digital' &&
                 <div id="time">
                     <div
-                        className={classNames('time-block', { narrow: hourType === 12 && hours < 10 })}
+                        className={classNames('time-block', 'hours', { narrow: hourType === 12 && hours < 10 })}
+                        ref={hoursBlock}
                     >
                         <div id="hh">{hours}</div>
                         <div className='unit'>h</div>
                     </div>
                     <div className="divider">:</div>
-                    <div className='time-block'>
+                    <div className='time-block minutes' ref={minutesBlock}>
                         <div id="mm">{minutes}</div>
                         <div className='unit'>m</div>
                     </div>
                     <div className="divider">:</div>
-                    <div className='time-block'>
+                    <div className='time-block seconds' ref={secondsBlock}>
                         <div id="ss">{seconds}</div>
                         <div className='unit'>s</div>
                     </div>
@@ -75,7 +101,12 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
             {
                 clockType === 'Analog' &&
                 // Modified from (CodePen)[https://codepen.io/rizz-wan/pen/LYQrGXM]
-                <div className="clock-container">
+                <div 
+                    className={classNames('clock-container', {
+                        animate: parseInt(hours) === 0 && parseInt(minutes) === 0 && parseInt(seconds) === 0
+                    })} 
+                    ref={clockContainer}
+                >
                     <div className="clock">
                         <span className="hour" ref={hourHand}></span>
                         <span className="minute" ref={minuteHand}></span>
@@ -86,7 +117,10 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
             }
             <div
                 id="time-zone"
-                className={classNames({ opaque: timezone === 'PLACEHOLDER'})}
+                className={classNames({
+                    invisible: timezone === 'PLACEHOLDER'
+                })}
+                ref={timezoneNode}
             >
                 {timezone}
             </div>

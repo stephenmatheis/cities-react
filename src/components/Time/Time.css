@@ -12,6 +12,35 @@
     color: var(--selected);
 }
 
+.time-block {
+    opacity: 0;
+    transform: translateY(-20vw);
+}
+
+.time-block.hours{
+    animation: drop-in-digital 400ms ease-in-out forwards;
+}
+
+.time-block.minutes {
+    animation: drop-in-digital 400ms ease-in-out 150ms forwards;
+}
+
+.time-block.seconds {
+    animation: drop-in-digital 400ms ease-in-out 300ms forwards;
+}
+
+@keyframes drop-in-digital {
+    from {
+        opacity: 0;
+        transform: translateY(-20vw);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .unit {
     display: none;
 }
@@ -27,7 +56,6 @@
 }
 
 .time-block.narrow #hh {
-    width: 12.5vw;
     text-align: right;
 }
 
@@ -37,12 +65,34 @@
 
 /* Analog */
 /* Modified from (CodePen)[https://codepen.io/rizz-wan/pen/LYQrGXM] */
+.clock-container {
+    margin-bottom: 2vw;
+}
+
+.clock-container.animate {
+    animation: drop-in-analog 400ms ease-in-out forwards;
+    opacity: 0;
+    transform: translateY(-25vw);
+}
+
+@keyframes drop-in-analog {
+    from {
+        opacity: 0;
+        transform: translateY(-25vw);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .clock {
+    position: relative;
     background: var(--secondary);
     border-radius: 100%;
-    height: 25vw;
-    position: relative;
-    width: 25vw;
+    height: 23vw;
+    width: 23vw;
 }
   
 .minute,
@@ -109,23 +159,57 @@
 #time-zone {
     text-align: center;
     font-size: 1.25em;
-    transition: opacity 100ms ease-in-out;
     color: var(--default);
+    animation: fade-in 400ms ease-in-out forwards;
 }
 
-.opaque {
+#time-zone.invisible {
     opacity: 0;
+    animation: none;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#hour-period {
+    animation: slide-in 400ms ease-in-out forwards;
+    opacity: 0;
+    transform: translateY(-25vw);
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(15vw);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @media screen and (min-width: 700px) {
     #time-zone {
         margin-bottom: 2em;
     }
+
+    .time-block.narrow #hh {
+        width: 12.5vw;
+    }
 }
 
 @media screen and (max-width: 700px) {
     #time-container {
         width: 240px;
+        height: 406px;
         display: flex;
         flex-direction: column;
         justify-content: center;

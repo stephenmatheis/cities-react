@@ -41,7 +41,11 @@
     height: 55px;
     width: 160px;
     border-radius: 20px;
-    transition: left 300ms ease-in-out;
+}
+
+#toolbar .button-container .selected.transition {
+    transition: left 300ms ease-in-out,
+                top 300ms ease-in-out;
 }
 
 @media screen and (min-width: 700px) {
