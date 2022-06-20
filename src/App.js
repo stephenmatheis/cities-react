@@ -43,10 +43,8 @@ function App() {
         const [ hh, mm, ss ] = time.split(':');
         const timeZoneName = timeZone.join(' ');
 
-        console.log(hourType);
-
         if (hourType === 24) {
-            setHours(hh == '24' ? '00' : hh);
+            setHours(hh === '24' ? '00' : hh);
         } else {
             setHours(parseInt(hh));
             setHourPeriod(
@@ -76,6 +74,7 @@ function App() {
                     timezone={timezone}
                     hourType={hourType}
                     hourPeriod={hourPeriod}
+                    clockType={clockType}
                 />
                 <ToolBar
                     setHourType={setHourType}

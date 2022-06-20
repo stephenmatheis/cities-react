@@ -13,6 +13,9 @@ function ToolBar({ setHourType, setClockType }) {
                     onClick={() => {
                         selectedHour.current.style.left = '10px';
                         setHourType(24);
+
+                        // FIXME: Under development
+                        // document.querySelector('#time-container').style.transform = `translateX(${window.innerWidth}px)`;
                     }}
                 >
                     24 Hour
@@ -22,6 +25,9 @@ function ToolBar({ setHourType, setClockType }) {
                     onClick={() => {
                         selectedHour.current.style.left = '190px';
                         setHourType(12);
+
+                        // FIXME: Under development
+                        // document.querySelector('#time-container').style.transform = `translateX(${window.innerWidth}px)`;
                     }}
                 >
                     12 Hour
