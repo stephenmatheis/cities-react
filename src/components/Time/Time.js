@@ -7,7 +7,7 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod }) {
         <div id='time-container'>
             <div id="time">
                 <div
-                    className={classNames('time-block', { narrow: hourType === 12})}
+                    className={classNames('time-block', { narrow: hourType === 12 && hours < 10 })}
                 >
                     <div id="hh">{hours}</div>
                     <div className='unit'>h</div>

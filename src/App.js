@@ -29,7 +29,7 @@ function App() {
                 setTime();
             }, 1000)
         )
-    }, [ selectedCity ]);
+    }, [ selectedCity, hourType ]);
 
     useEffect(() => {
         const hoursNum = parseInt(hours);
@@ -43,10 +43,12 @@ function App() {
         const [ hh, mm, ss ] = time.split(':');
         const timeZoneName = timeZone.join(' ');
 
+        console.log(hourType);
+
         if (hourType === 24) {
             setHours(hh == '24' ? '00' : hh);
         } else {
-            setHours(hh);
+            setHours(parseInt(hh));
             setHourPeriod(
                 new Date()
                 .toLocaleTimeString('default', { timeZone: `${area}/${api || label.replaceAll(' ', '_')}` })
