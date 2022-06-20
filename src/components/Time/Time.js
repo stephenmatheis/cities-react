@@ -34,7 +34,7 @@ function Time({ hours, minutes, seconds, timezone, hourType, hourPeriod, clockTy
         const hour = hours * 30;
         const minute = minutes * 6;
         const second = seconds * 6;
-        
+
         if (!hourHand.current && !minuteHand.current && !secondHand.current) {
             return;
         }

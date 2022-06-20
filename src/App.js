@@ -20,11 +20,11 @@ function App() {
     const [ updateTime, setUpdateTime ] = useState(null);
 
     useEffect(() => {
+        clearInterval(updateTime);
+
         if (!selectedCity) {
             return;
         }
-
-        clearInterval(updateTime);
 
         setTime();
 
@@ -97,6 +97,22 @@ function App() {
                     setClockType={setClockType}
                 ></ToolBar>
             </main>
+            <footer>
+                <button
+                    id='reset'
+                    onClick={() => {
+                        localStorage.clear();
+                        setSelectedCity(null);
+                        setClockType('Digital');
+                        setHourType(24);
+                        setHours('00');
+                        setMinutes('00');
+                        setSeconds('00');
+                    }}
+                >
+                    Reset
+                </button>
+            </footer>
         </div>
     );
 }

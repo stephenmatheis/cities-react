@@ -18,17 +18,29 @@ function NavBar({ selectedCity, setSelectedCity }) {
     useEffect(() => {
         fetchData();
         window.addEventListener('resize', onResize);
+
     }, [ ]);
+
+    useEffect(() => {
+        if (!selectedCity) {
+            setSelectedBtn(null);
+            setSelectedSection(null);
+
+            setTimeout(() => {
+                slider.current.style.top = '0px';
+                slider.current.style.left = '0px';
+                slider.current.style.width = '0px';
+                slider.current.style.height = '0px';
+            }, 0);
+        }
+    }, [ selectedCity ])
 
     useEffect(() => {
         if (selectedCity && !selectedBtn) {
             setSelectedBtn(nav.current.querySelector(`.city[data-section="${selectedCity.section}"]`));
+            setSelectedSection(selectedCity.section);
         }
 
-        // FIXME: 
-        // Adding onResize to dependency array fires setSliderSizeAndPosition every time this effect is run,
-        // which is every second.
-        console.log('fired');
         setSliderSizeAndPosition();
     }, [ selectedBtn, onResize ]);
 
@@ -106,7 +118,7 @@ function NavBar({ selectedCity, setSelectedCity }) {
                         return (
                             <div
                                 key={section}
-                                className={classNames('city', {selected: selectedSection === section || selectedCity && selectedCity.section === section })}
+                                className={classNames('city', {selected: selectedSection === section })}
                                 data-section={section}
                                 onClick={(event) => {
                                     setSelectedSection(event.target.dataset.section);
