@@ -15,6 +15,8 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
     const right = '190px';
     const top = '10px';
     const bottom = '85px';
+    const topShortView = '5px'
+    const bottomShortView = '55px'
 
     useEffect(() => {
         window.removeEventListener('resize', onResizeToolBar);
@@ -59,11 +61,20 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
         
         if (window.innerWidth > 700) {
             selectedHour.current.style.left = hourType === 24 ? left : right;
-            selectedHour.current.style.top = top
-        } else {
+            selectedHour.current.style.top = top;
+
+            return;
+        }
+        
+        if (window.innerHeight > 748) {
             selectedHour.current.style.top = hourType === 24 ? top : bottom;
             selectedHour.current.style.left = left;
+
+            return;
         }
+
+        selectedHour.current.style.top = hourType === 24 ? topShortView : bottomShortView;
+        selectedHour.current.style.left = '5px';
     }
 
     function setClockTypePosition() {
@@ -73,11 +84,13 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
         
         if (window.innerWidth > 700) {
             selectedClock.current.style.left = clockType === 'Digital' ? left : right;
-            selectedClock.current.style.top = top
-        } else {
-            selectedClock.current.style.top = clockType === 'Digital' ? top : bottom;
-            selectedClock.current.style.left = left;
+            selectedClock.current.style.top = top;
+            
+            return;
         }
+        
+        selectedClock.current.style.top = clockType === 'Digital' ? topShortView : bottomShortView;
+        selectedClock.current.style.left = '5px';
     }
 
     return (

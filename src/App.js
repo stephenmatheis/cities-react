@@ -108,6 +108,7 @@ function App() {
                         setHours('00');
                         setMinutes('00');
                         setSeconds('00');
+                        setTimezone('PLACEHOLDER');
                     }}
                 >
                     Reset

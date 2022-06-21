@@ -68,3 +68,19 @@
         margin-bottom: 5vw;
     }
 }
+
+@media screen and (max-height: 748px) {
+    #toolbar .button-container button {
+        height: 50px;
+    }
+
+    #toolbar .button-container .selected {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: var(--primaryLight);
+        height: 40px;
+        width: 170px;
+        border-radius: 15px;
+    }
+}

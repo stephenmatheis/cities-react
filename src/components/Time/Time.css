@@ -275,7 +275,7 @@
     }
 
     #time-zone {
-        height: 50px;
+        min-height: 50px;
         margin-top: 1.5vh;
         margin-bottom: 3vh;
     }
