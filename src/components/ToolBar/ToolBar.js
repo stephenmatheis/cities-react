@@ -88,6 +88,13 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
             
             return;
         }
+
+        if (window.innerHeight > 748) {
+            selectedClock.current.style.top = clockType === 'Digital' ? top : bottom;
+            selectedClock.current.style.left = left;
+
+            return;
+        }
         
         selectedClock.current.style.top = clockType === 'Digital' ? topShortView : bottomShortView;
         selectedClock.current.style.left = '5px';
