@@ -75,6 +75,7 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
 
         selectedHour.current.style.top = hourType === 24 ? topShortView : bottomShortView;
         selectedHour.current.style.left = '5px';
+        selectedHour.current.style.display = 'block';
     }
 
     function setClockTypePosition() {
@@ -98,6 +99,7 @@ function ToolBar({ hourType, clockType, setHourType, setClockType }) {
         
         selectedClock.current.style.top = clockType === 'Digital' ? topShortView : bottomShortView;
         selectedClock.current.style.left = '5px';
+        selectedClock.current.style.display = 'block';
     }
 
     return (

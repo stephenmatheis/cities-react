@@ -48,6 +48,23 @@
                 top 300ms ease-in-out;
 }
 
+@media screen and (max-height: 748px) {
+    #toolbar .button-container button {
+        height: 50px;
+    }
+
+    #toolbar .button-container .selected {
+        display: none;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: var(--primaryLight);
+        height: 40px;
+        width: 170px;
+        border-radius: 15px;
+    }
+}
+
 @media screen and (min-width: 700px) {
     #toolbar .button-container:not(:last-child) {
         margin-right: 10vw;
@@ -66,21 +83,5 @@
 
     #toolbar .button-container:not(:last-child) {
         margin-bottom: 5vw;
-    }
-}
-
-@media screen and (max-height: 748px) {
-    #toolbar .button-container button {
-        height: 50px;
-    }
-
-    #toolbar .button-container .selected {
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        background-color: var(--primaryLight);
-        height: 40px;
-        width: 170px;
-        border-radius: 15px;
     }
 }
