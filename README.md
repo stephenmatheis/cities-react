@@ -2,9 +2,9 @@
 
 [Live demo](https://cities-react.netlify.app/)
 
-[![Test My Site](https://www.netlify.com/img/global/badges/netlify-color-bg.svg)](https://testmysite.io/62b4e84e0a5881009b290a1e/cities-react.netlify.app){:target="_blank"}
+[![Test My Site](https://www.netlify.com/img/global/badges/netlify-color-bg.svg)](https://testmysite.io/62b4e84e0a5881009b290a1e/cities-react.netlify.app)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fc2d32fe-6763-4721-92e3-bd1a4f1cf391/deploy-status)](https://app.netlify.com/sites/cities-react/deploys){:target="_blank"}
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fc2d32fe-6763-4721-92e3-bd1a4f1cf391/deploy-status)](https://app.netlify.com/sites/cities-react/deploys)
 
 ## Getting Started with Create React App
 
