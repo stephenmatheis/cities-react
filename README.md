@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Cities - React
+
+[Live demo](https://cities-react.netlify.app/)
+
+[![Test My Site](https://www.netlify.com/img/global/badges/netlify-color-bg.svg)](https://testmysite.io/62b4e84e0a5881009b290a1e/cities-react.netlify.app)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fc2d32fe-6763-4721-92e3-bd1a4f1cf391/deploy-status)](https://app.netlify.com/sites/cities-react/deploys)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
